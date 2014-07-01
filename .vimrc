@@ -4,10 +4,10 @@ if v:progname =~? "evim"
 endif
 
 " tabs
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
-set tabstop=4
+set tabstop=2
 set autoindent
 set cindent
 set smartindent
@@ -154,3 +154,7 @@ autocmd BufNewFile * silent! 0r $HOME/Documents/_CODETPL/%:e.tpl
 autocmd BufNewFile * normal! G"_dd1G
 autocmd BufNewFile * silent! match Todo /TODO/
 augroup BufNewFileFromTemplate
+
+" Pathogen
+" https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
