@@ -118,6 +118,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias clean='rm *~ .*~'
+alias sclean='sudo rm *~ .*~'
 
 if [ `uname` == 'NetBSD' ]; then
     alias ls='colorls -G'
