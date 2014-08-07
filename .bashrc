@@ -100,12 +100,7 @@ if [ `uname` == 'NetBSD' ]; then
     export VISUAL=/usr/pkg/bin/vim
     export EDITOR=/usr/pkg/bin/vim
     export TERM=xterm-color
-    export CVSROOT="/arpa/gm/j/jzimm/cvsroot"
-    export CVS_RSH=ssh
-    export EMAIL="jzimm@freeshell.org"
     export TMPDIR="/tmp"
-    export REPLYTO="jzimm@freeshell.org"
-    export ACRONYMDB="/sys/sdf/share/misc/acronyms"
 fi
 
 
