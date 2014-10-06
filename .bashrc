@@ -82,6 +82,8 @@ xterm*|rxvt*)
     #export PS1="${LIGHTGREEN}\u@\h:\w\\n${YELLOW}\$ "
     #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[1;32m\u\e[0;32m@\e[1;32m\H\e[0;32m:\e[1;32m$(pwd) \e[1;33m\n\$ '
     #git bash prompt
+    # http://code-worrier.com/blog/git-branch-in-bash-prompt/
+    source .git-prompt.sh
     export PS1='\u@\h:\W$(__git_ps1 " (\[\033[32m\]%s\[\033[m\])")$ '
     ;;
 
