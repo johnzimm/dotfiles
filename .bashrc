@@ -80,7 +80,9 @@ xterm*|rxvt*)
     #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[0;31m\u\e[0;37m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
     #export PS1='\n\e[0;31m\u\e[37;0m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
     #export PS1="${LIGHTGREEN}\u@\h:\w\\n${YELLOW}\$ "
-    export PS1='\e]2;\u@\H:$(pwd)\a\n\e[1;32m\u\e[0;32m@\e[1;32m\H\e[0;32m:\e[1;32m$(pwd) \e[1;33m\n\$ '
+    #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[1;32m\u\e[0;32m@\e[1;32m\H\e[0;32m:\e[1;32m$(pwd) \e[1;33m\n\$ '
+    #git bash prompt
+    export PS1='\u@\h:\W$(__git_ps1 " (\[\033[32m\]%s\[\033[m\])")$ '
     ;;
 
 *)
