@@ -1,8 +1,11 @@
 # .bash_profile
 
-if [ ! -z "$TMOUT" ]; then
-    env -i bash --init-file ~/.bash_profile
-fi
+
+#
+# Override TMOUT in subshell
+#
+
+
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
