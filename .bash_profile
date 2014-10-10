@@ -4,7 +4,9 @@
 #
 # Override TMOUT in subshell
 #
-
+unset TMOUT
+TMOUT=0
+export TMOUT
 
 
 # Get the aliases and functions
