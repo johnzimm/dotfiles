@@ -85,7 +85,7 @@ xterm*|rxvt*)
     # http://code-worrier.com/blog/git-branch-in-bash-prompt/
     source .git-prompt.sh
     #export PS1='\u@\h:\W$(__git_ps1 " (\[\033[32m\]%s\[\033[m\])")$ '
-    export PS1="\[$GREEN\]\t\[$RED\]-\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\n\$ "
+    export PS1="\[$GREEN\]\t\[$RED\] \[$BLUE\]\u@\h:\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\n\$ "
     ;;
 
 *)
