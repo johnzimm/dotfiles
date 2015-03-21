@@ -171,4 +171,4 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin" # Add RVM to PATH for scripting
