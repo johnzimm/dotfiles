@@ -126,8 +126,10 @@ if [ `uname` == 'NetBSD' ]; then
     alias pine='alpine'
 fi
 
+# check dircolors -p for coloring values
 if [ `uname` == 'Linux' ] || [ `uname` == 'CYGWIN_NT-5.1' ]; then
     eval "`dircolors -b`"
+    eval "`dircolors -b ~/.dircolors`"
     alias ls='ls --color=auto'
     alias dir='ls --color=auto --format=vertical'
     alias vdir='ls --color=auto --format=long'
@@ -169,6 +171,5 @@ function gzipr () {
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
-
 
 export PATH="$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin" # Add RVM to PATH for scripting

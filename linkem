@@ -4,6 +4,7 @@ rm -f ~/.bash_profile
 rm -Rf ~/.vim
 rm -Rf ~/.git-prompt.sh
 rm -Rf ~/.puppet-lint.rc
+rm -Rf ~/.dircolors
 
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.vim ~/.vim
@@ -11,3 +12,4 @@ ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/.git-prompt.sh ~/.git-prompt.sh
 ln -s ~/dotfiles/.puppet-lint.rc ~/.puppet-lint.rc
+ln -s ~/dotfiles/.dircolors ~/.dircolors
