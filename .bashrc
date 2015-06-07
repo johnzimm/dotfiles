@@ -172,4 +172,28 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-export PATH="$HOME/.rvm/bin:/usr/local/heroku/bin:$PATH" # Add RVM to PATH for scripting
+#---------------------------------------------------------------------------
+# Path Adjustments
+#---------------------------------------------------------------------------
+
+if [ -d /opt/local/bin ]; then
+  PATH="/opt/local/bin:$PATH"
+fi
+
+if [ -d /usr/local/bin ]; then
+  PATH="/usr/local/bin:$PATH"
+fi
+
+if [ -d /usr/local/heroku/bin ]; then
+  PATH="/usr/local/heroku/bin:$PATH"
+fi
+
+if [ -d $HOME/.rvm/bin ]; then
+  PATH="$HOME/.rvm/bin:$PATH"
+fi
+
+if [ -d $HOME/bin ]; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+export PATH="$PATH"
