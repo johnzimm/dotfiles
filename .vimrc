@@ -102,9 +102,9 @@ if version>=600
     endif
 
     " Filetypes (au = autocmd)
-    au filetype help set nonumber      " no line numbers when viewing help
-    au filetype help nnoremap <buffer><cr> <c-]>   " Enter selects subject
-    au filetype help nnoremap <buffer><bs> <c-T>   " Backspace to go back
+    au FileType help set nonumber      " no line numbers when viewing help
+    au FileType help nnoremap <buffer><cr> <c-]>   " Enter selects subject
+    au FileType help nnoremap <buffer><bs> <c-T>   " Backspace to go back
 
     " When using mutt, text width=72
     "au filetype mail set textwidth=72
