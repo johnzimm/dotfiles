@@ -202,6 +202,10 @@ if [ -d $HOME/bin ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
+if [ -d /cygdrive/c/Program\ Files/Puppet\ Labs/Puppet/bin ]; then
+  PATH="/cygdrive/c/Program\ Files/Puppet\ Labs/Puppet/bin:$PATH"
+fi
+
 export PATH="$PATH"
 
 if [ -d $HOME/.nvm ]; then
