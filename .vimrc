@@ -155,6 +155,9 @@ autocmd BufNewFile * normal! G"_dd1G
 autocmd BufNewFile * silent! match Todo /TODO/
 augroup BufNewFileFromTemplate
 
+" NerdTree
+map <C-n> :NERDTreeToggle<CR>
+
 " Pathogen
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
