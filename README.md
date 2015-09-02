@@ -4,6 +4,14 @@ This is just a collection of dotfiles in my home directory I use personally.
 They contain snippets of things I've found useful collected from other's
 dotfiles, my own tinkering, and various places around the Internet.
 
+Snippets shamelessly borrowed from some of the following....
+ * https://github.com/jfrazelle/dotfiles
+ * https://github.com/necolas/dotfiles
+ * https://dotfiles.github.io
+ * Other sources I forgot to make note of....
+
+
+
 ## How to use this repo
 
 First you should fork this so you have your own copy.
