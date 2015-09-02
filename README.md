@@ -18,6 +18,7 @@ First you should fork this so you have your own copy.
 
 After you fork it do the following...
 
+```bash
   cd ~
   git clone --recursive git@example.com:username/dotfiles.git
   cd dotfiles
@@ -25,11 +26,13 @@ After you fork it do the following...
   cd ~
   source .bashrc
   source .profile
+```
 
 That should be it. Note the "--recursive" as there are submodules.
 
 ## Updating
 
+```bash
   cd ~/dotfiles
   git pull origin master
   git submodule update --init --recursive
@@ -37,6 +40,7 @@ That should be it. Note the "--recursive" as there are submodules.
   ./linkem
   cd ~
   source .bashrc
+```
 
 ## License
 
