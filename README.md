@@ -28,6 +28,15 @@ After you fork it do the following...
 
 That should be it. Note the "--recursive" as there are submodules.
 
+## Updating
+
+  cd ~/dotfiles
+  git pull origin master
+  git submodule update --init --recursive
+  git submodule foreach git pull origin master
+  ./linkem
+  cd ~
+  source .bashrc
 
 ## License
 
