@@ -3,6 +3,10 @@ if v:progname =~? "evim"
   finish
 endif
 
+" Pathogen
+" https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
 " tabs
 set shiftwidth=2
 set softtabstop=2
@@ -158,6 +162,3 @@ augroup BufNewFileFromTemplate
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
-" Pathogen
-" https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
