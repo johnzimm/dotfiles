@@ -125,6 +125,8 @@ alias la='ls -a'
 alias lla='ls -la'
 alias clean='rm *~ .*~'
 alias sclean='sudo rm *~ .*~'
+alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --color'
+alias gitresetauthor='git commit --amend --reset-author'
 
 if [ `uname` == 'NetBSD' ]; then
     alias ls='colorls -G'
