@@ -127,6 +127,7 @@ alias clean='rm *~ .*~'
 alias sclean='sudo rm *~ .*~'
 alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gitresetauthor='git commit --amend --reset-author'
+alias pwhash="python -c \"import crypt,random,string; print crypt.crypt(raw_input('clear-text password: '), '\\\$6\\\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)]))\""
 
 if [ `uname` == 'NetBSD' ]; then
     alias ls='colorls -G'
