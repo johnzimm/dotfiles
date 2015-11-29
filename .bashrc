@@ -129,6 +129,8 @@ alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --col
 alias gitresetauthor='git commit --amend --reset-author'
 alias pwhash="python -c \"import crypt,random,string; print crypt.crypt(raw_input('clear-text password: '), '\\\$6\\\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)]))\""
 
+alias curlr10k="curl --silent --output /dev/null -d '{ \"ref\": \"\" }' 'http://puppet:8088/payload'"
+
 if [ `uname` == 'NetBSD' ]; then
     alias ls='colorls -G'
     #alias pine='pine -d 0'
