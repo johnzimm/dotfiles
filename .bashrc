@@ -203,6 +203,10 @@ if [ -d /usr/local/bin ]; then
   PATH="/usr/local/bin:$PATH"
 fi
 
+if [ -d /usr/local/git/bin ]; then
+  PATH="/usr/local/git/bin:$PATH"
+fi
+
 if [ -d /usr/local/heroku/bin ]; then
   PATH="/usr/local/heroku/bin:$PATH"
 fi
