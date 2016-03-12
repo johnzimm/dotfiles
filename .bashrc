@@ -131,6 +131,8 @@ alias pwhash="python -c \"import crypt,random,string; print crypt.crypt(raw_inpu
 
 alias curlr10k="curl --silent --output /dev/null -d '{ \"ref\": \"\" }' 'http://puppet:8088/payload'"
 
+alias tunnel="echo 'ssh -N -f -p <ssh_remote_port> username@remote_host -L <local_tunnel_port>:<remote_tunnel_host>:<remote_tunnel_port>'"
+
 if [ `uname` == 'NetBSD' ]; then
     alias ls='colorls -G'
     #alias pine='pine -d 0'
