@@ -186,6 +186,14 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 #---------------------------------------------------------------------------
+# SSH Configuration
+#---------------------------------------------------------------------------
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+    ssh-add
+fi
+
+#---------------------------------------------------------------------------
 # Path Adjustments
 #---------------------------------------------------------------------------
 
@@ -195,6 +203,10 @@ fi
 
 if [ -d /usr/local/bin ]; then
   PATH="/usr/local/bin:$PATH"
+fi
+
+if [ -d /usr/local/git/bin ]; then
+  PATH="/usr/local/git/bin:$PATH"
 fi
 
 if [ -d /usr/local/heroku/bin ]; then
