@@ -80,7 +80,7 @@ LIGHTPURPLE='\e[1;35m';
 #---------------------------------------------------------------------------
 case "$TERM" in
 
-xterm*|rxvt*)
+xterm*|rxvt*|screen*|tmux*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     #export PS1="${PURPLE}"'[${PWD/$HOME/~}]\n'"${LIGHTGREEN}"'[${USER}@${HOSTNAME}] '"${LIGHTGREEN}"
     #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[0;31m\u\e[0;37m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
@@ -215,6 +215,7 @@ fi
 
 if [ -d $HOME/.rvm/bin ]; then
   PATH="$HOME/.rvm/bin:$PATH"
+  source $HOME/.rvm/bin/rvm
 fi
 
 if [ -d $HOME/bin ]; then
@@ -223,6 +224,12 @@ fi
 
 if [ -d /cygdrive/c/Program\ Files/Puppet\ Labs/Puppet/bin ]; then
   PATH="/cygdrive/c/Program\ Files/Puppet\ Labs/Puppet/bin:$PATH"
+fi
+
+if [ -d $HOME/anaconda/bin ]; then
+  PATH="$HOME/anaconda/bin:$PATH"
+elif [ -d $HOME/anaconda2/bin ]; then
+  PATH="$HOME/anaconda2/bin:$PATH" 
 fi
 
 export PATH="$PATH"
