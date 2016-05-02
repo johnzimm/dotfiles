@@ -215,7 +215,6 @@ fi
 
 if [ -d $HOME/.rvm/bin ]; then
   PATH="$HOME/.rvm/bin:$PATH"
-  source $HOME/.rvm/bin/rvm
 fi
 
 if [ -d $HOME/bin ]; then
