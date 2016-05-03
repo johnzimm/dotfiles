@@ -187,13 +187,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-#---------------------------------------------------------------------------
-# SSH Configuration
-#---------------------------------------------------------------------------
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent -s`
-    ssh-add
-fi
 
 #---------------------------------------------------------------------------
 # Path Adjustments
@@ -235,10 +228,6 @@ fi
 
 export PATH="$PATH"
 
-if [ -d $HOME/.nvm ]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-fi
 
 #---------------------------------------------------------------------------
 # Load a local bashrc if it exists 
