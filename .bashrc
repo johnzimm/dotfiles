@@ -148,6 +148,8 @@ if [ `uname` == 'Linux' ] || [ `uname` == 'CYGWIN_NT-5.1' ]; then
     alias vdir='ls --color=auto --format=long'
 fi
 
+# git aliases
+alias git_slog='git log --pretty=oneline --abbrev-commit'
 
 
 #---------------------------------------------------------------------------
