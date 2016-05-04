@@ -90,7 +90,8 @@
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
 [format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+  # https://git-scm.com/docs/pretty-formats
+  pretty = format:%C(cyan)%ai%Creset %C(yellow)%h%C(green)%d%Creset %C(cyan)%s %C(magenta) [%an]%Creset
 [mergetool]
   prompt = false
 [mergetool "mvimdiff"]
