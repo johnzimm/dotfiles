@@ -6,6 +6,7 @@ rm -f ~/.tmux.conf
 rm -Rf ~/.vim
 rm -Rf ~/.git-prompt.sh
 rm -Rf ~/.git-completion.bash
+rm -Rf ~/.gitignore
 rm -Rf ~/.puppet-lint.rc
 rm -Rf ~/.dircolors
 
@@ -17,6 +18,7 @@ ln -s ~/dotfiles/.ssh/config ~/.ssh/config
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.git-prompt.sh ~/.git-prompt.sh
 ln -s ~/dotfiles/.git-completion.bash ~/.git-completion.bash
+ln -s ~/dotfiles/.gitignore ~/.gitignore
 ln -s ~/dotfiles/.puppet-lint.rc ~/.puppet-lint.rc
 ln -s ~/dotfiles/.dircolors ~/.dircolors
 
