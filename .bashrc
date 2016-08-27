@@ -181,6 +181,22 @@ function gzipr () {
   find . -type f -name "$@" -exec gzip -9 {} \;
 }
 
+function examples () {
+  echo "
+  #
+  # Example Commands
+  #  - See http://commandlinefu.com for more
+  #
+
+  Batch File Rename:
+    for file in *.ext; do mv -vi \"\$file\" \"\$( echo \"\$file\" | sed \"s/regex/replace/\" )\"; done
+
+  Timestamp:
+    touch -c -m -a -t 197001020304.05 *.ext
+  "
+}
+
+
 #---------------------------------------------------------------------------
 # Programmable Completion
 #---------------------------------------------------------------------------
