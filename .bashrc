@@ -198,7 +198,7 @@ function examples () {
     touch -c -m -a -t 197001020304.05 *.ext
 
   Compare RPMs:
-    rpm -qa --queryformat='%{NAME}\n' | sort > `hostname`-packages.txt
+    rpm -qa --queryformat='%{NAME}\n' | sort > \`hostname\`-packages.txt
     diff server1-packages.txt server2-packages.txt
   "
 }
