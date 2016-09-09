@@ -191,6 +191,9 @@ function examples () {
   Batch File Rename:
     for file in *.ext; do mv -vi \"\$file\" \"\$( echo \"\$file\" | sed \"s/regex/replace/\" )\"; done
 
+  Date
+    date +%Y%m%d%H%M%S
+
   Timestamp:
     touch -c -m -a -t 197001020304.05 *.ext
 
