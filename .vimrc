@@ -105,10 +105,11 @@ if version>=600
     endif
 
     set background=dark
-    let g:solarized_termcolors=256  " need to do this if not using solarized for terminal
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="normal"
-    colorscheme solarized
+    " let g:solarized_termcolors=256  " need to do this if not using solarized for terminal
+    " let g:solarized_termtrans=1
+    " let g:solarized_contrast="normal"
+    " colorscheme solarized
+    colorscheme elflord
 
     " Filetypes (au = autocmd)
     au FileType help set nonumber      " no line numbers when viewing help
