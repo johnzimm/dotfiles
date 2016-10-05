@@ -1,0 +1,46 @@
+$ORIGIN example.com.
+$TTL 14400
+@    IN    SOA    ns1.example.com.    hostmaster.example.com. (
+            2014071301 ; serial.  date.    today + increment
+            1H         ; refresh. seconds. frequency slave refreshes from master.
+            10M        ; retry.   seconds. frequency slave retries master after failure.
+            1W         ; expire.  seconds. slave stops responding as authoritative.
+            1D         ; ttl.     seconds. Maximum caching time by resolver.
+            )
+
+;------------------------------------------------------------------------------
+; Notes For This Zone
+; - This is a note for this zone.
+; - This is another note for this zone.
+;
+; Troubleshooting
+; - DNS Check: http://intodns.com
+; - SPF Check: http://emailstuff.org/spf/check/
+; - SPF Check: http://www.kitterman.com/spf/validate.html
+; - MXToolbox: http://mxtoolbox.com/
+;
+
+;------------------------------------------------------------------------------
+; Special/Glue Records
+;  - SPF Records are limited to 10 DNS lookups recursively.
+;
+            IN NS    ns1.example.com.
+            IN NS    ns2.example.com.
+            IN MX    10   mail1.example.com.
+            IN MX    20   mail2.example.com.
+            IN TXT  "v=spf1 ip4:0.0.0.0/32 ip4:0.0.0.0/32 ~all"
+
+;------------------------------------------------------------------------------
+; Records
+;
+@           IN A    0.0.0.0
+*           IN A    0.0.0.0
+ns1         IN A    0.0.0.0
+ns2         IN A    0.0.0.0
+mail1       IN A    0.0.0.0
+mail2       IN A    0.0.0.0
+www         IN A    0.0.0.0
+
+;------------------------------------------------------------------------------
+; More Records
+;

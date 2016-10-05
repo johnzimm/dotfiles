@@ -1,0 +1,27 @@
+###############################################################################
+# Dockerfile
+#  - https://github.com/CentOS/CentOS-Dockerfiles
+#
+FROM centos:latest
+
+MAINTAINER Some Body "somebody@somedomain.com"
+LABEL "Key1"="Value1" \
+      "Key2"="Value2"
+
+RUN yum -y update && \
+    yum -y install yum-utils epel-release centos-release-scl-rh scl-utils git curl && \
+    yum clean all
+
+ENV APP_HOME=/srv/app
+
+RUN mkdir -p ${APP_HOME}
+
+WORKDIR ${APP_HOME}
+
+ADD . /srv/app/
+
+EXPOSE 4567
+
+ENTRYPOINT [ "/bin/sh", "-c" ]
+
+CMD [ "/bin/bash" ]

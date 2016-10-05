@@ -159,13 +159,12 @@ imap <Esc>Ox 8
 imap <Esc>Oy 9
 imap <Esc>Oz 0
 
-" Templates
-augroup BufNewFileFromTemplate
-au!
-autocmd BufNewFile * silent! 0r $HOME/Documents/_CODETPL/%:e.tpl
-autocmd BufNewFile * normal! G"_dd1G
-autocmd BufNewFile * silent! match Todo /TODO/
-augroup BufNewFileFromTemplate
+" Skeletons
+"  - list filetypes:
+"    :echo glob($VIMRUNTIME . '/ftplugin/*.vim')
+"    :echo glob($VIMRUNTIME . '/syntax/*.vim')
+au BufNewFile .gitignore :silent! exec ":0r "."~/.vim/"."skeletons/"."gitignore"
+au BufNewFile *          :silent! exec ":0r "."~/.vim/"."skeletons/".&ft
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
