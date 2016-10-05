@@ -89,21 +89,26 @@ if has("autocmd")
 endif " has("autocmd")
 
 if version>=600
-    syntax on          " syntax highlighing
+    syntax enable          " syntax highlighing
 
-    "---- Options for Windows
     if has("gui_running")
         set guifont=Courier   " use this font 
         set lines=50      " height = 50 lines
         set columns=100       " width = 100 columns
-        set background=dark " adapt colors for background
+        " set background=dark " adapt colors for background
         set selectmode=mouse,key,cmd
         set keymodel=
-        colorscheme slate
+        " colorscheme slate
     else
-        set background=dark   " adapt colors for dark background
-        colorscheme elflord   " use this color scheme
+        " set background=dark   " adapt colors for dark background
+        " colorscheme elflord   " use this color scheme
     endif
+
+    set background=dark
+    let g:solarized_termcolors=256  " need to do this if not using solarized for terminal
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    colorscheme solarized
 
     " Filetypes (au = autocmd)
     au FileType help set nonumber      " no line numbers when viewing help
