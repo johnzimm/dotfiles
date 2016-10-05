@@ -122,6 +122,9 @@ if version>=600
     " File formats
     au BufNewFile,BufRead  *.pls    set syntax=dosini
     au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
+
+    " vim-less plugin
+    nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 endif
 
 " Keyboard mapping for numeric keypad

@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/vim-numbertoggle"]
 	path = .vim/bundle/vim-numbertoggle
 	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle.git
+[submodule ".vim/bundle/vim-less"]
+	path = .vim/bundle/vim-less
+	url = https://github.com/groenewege/vim-less.git
