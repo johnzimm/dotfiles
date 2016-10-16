@@ -196,6 +196,7 @@ function examples () {
 
   Date
     date +%Y%m%d%H%M%S
+    date +%Y-%m-%d@%H:%M:%S
 
   Timestamp:
     touch -c -m -a -t 197001020304.05 *.ext
