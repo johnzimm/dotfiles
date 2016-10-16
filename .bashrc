@@ -1,51 +1,64 @@
+############################################################################
+# .bashrc
+#
 
 #---------------------------------------------------------------------------
-# Source global definitions
+# Source Global RC
 #---------------------------------------------------------------------------
+
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
 #---------------------------------------------------------------------------
-# Setup Display
+# Display Setup
 #---------------------------------------------------------------------------
-function get_xserver ()
-{
-    case $TERM in
-    xterm )
-            XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' ) 
-            # Ane-Pieter Wieringa suggests the following alternative:
-            # I_AM=$(who am i)
-            # SERVER=${I_AM#*(}
-            # SERVER=${SERVER%*)}
 
-            XSERVER=${XSERVER%%:*}
-        ;;
+function get_xserver () {
+  case $TERM in
+    xterm )
+      XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' ) 
+      # Ane-Pieter Wieringa suggests the following alternative:
+      # I_AM=$(who am i)
+      # SERVER=${I_AM#*(}
+      # SERVER=${SERVER%*)}
+      XSERVER=${XSERVER%%:*}
+      ;;
     aterm | rxvt)
-    # find some code that works here.....
-        ;;
-    esac  
+      # find some code that works here.....
+      ;;
+  esac  
 }
 
 if [ -z ${DISPLAY:=""} ]; then
-    get_xserver
-    if [[ -z ${XSERVER}  || ${XSERVER} == $(hostname) ||
-          ${XSERVER} == "unix" ]]; then
+  get_xserver
+  if [[ -z ${XSERVER} || ${XSERVER} == $(hostname) || ${XSERVER} == "unix" ]]; then
     DISPLAY=":0.0"      # Display on local host
-    else        
+  else        
     DISPLAY=${XSERVER}:0.0  # Display on remote host
-    fi
+  fi
 fi
 
 export DISPLAY
 
 #---------------------------------------------------------------------------
-# Settings
+# General Settings and Environment
 #---------------------------------------------------------------------------
 export HISTFILESIZE=3000      # we are saving 3000 commands
 export HISTCONTROL=ignoredups # don't duplicate lines in history
 export HISTCONTROL=ignoreboth # ignore successive entries
 shopt -s checkwinsize         # update the values of LINES and COLUMNS if necessary
+
+export TZ=PST8PDT
+
+if [ `uname` == 'NetBSD' ]; then
+  export MAIL=/mail/${LOGNAME:?}
+  export VISUAL=/usr/pkg/bin/vim
+  export EDITOR=/usr/pkg/bin/vim
+  export TERM=xterm-color
+  export TMPDIR="/tmp"
+fi
+
 
 
 #---------------------------------------------------------------------------
@@ -76,12 +89,12 @@ LIGHTRED='\e[1;31m';
 LIGHTPURPLE='\e[1;35m';
 
 #---------------------------------------------------------------------------
-# Setup Prompt and Title
+# Prompt and Title
 #---------------------------------------------------------------------------
-case "$TERM" in
 
-xterm*|rxvt*|screen*|tmux*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+case "$TERM" in
+  xterm*|rxvt*|screen*|tmux*)
+    #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     #export PS1="${PURPLE}"'[${PWD/$HOME/~}]\n'"${LIGHTGREEN}"'[${USER}@${HOSTNAME}] '"${LIGHTGREEN}"
     #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[0;31m\u\e[0;37m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
     #export PS1='\n\e[0;31m\u\e[37;0m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
@@ -94,32 +107,15 @@ xterm*|rxvt*|screen*|tmux*)
     #export PS1='\u@\h:\W$(__git_ps1 " (\[\033[32m\]%s\[\033[m\])")$ '
     export PS1="\[$GREEN\]\t\[$RED\] \[$BLUE\]\u@\h:\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\n\$ "
     ;;
-
-*)
+  *)
     export PS1="\u@\h:\w\\n$ "
     ;;
 esac
 
-
-
-#---------------------------------------------------------------------------
-# Environment Variables
-#---------------------------------------------------------------------------
-export TZ=PST8PDT
-
-if [ `uname` == 'NetBSD' ]; then
-    export MAIL=/mail/${LOGNAME:?}
-    export VISUAL=/usr/pkg/bin/vim
-    export EDITOR=/usr/pkg/bin/vim
-    export TERM=xterm-color
-    export TMPDIR="/tmp"
-fi
-
-
-
 #---------------------------------------------------------------------------
 # Aliases
 #---------------------------------------------------------------------------
+
 alias vi='vim'
 alias ll='ls -l'
 alias la='ls -a'
@@ -128,6 +124,7 @@ alias clean='rm *~ .*~'
 alias sclean='sudo rm *~ .*~'
 alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gitresetauthor='git commit --amend --reset-author'
+alias git_slog='git log --pretty=oneline --abbrev-commit'
 alias pwhash="python -c \"import crypt,random,string; print crypt.crypt(raw_input('clear-text password: '), '\\\$6\\\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)]))\""
 
 alias curlr10k="curl --silent --output /dev/null -d '{ \"ref\": \"\" }' 'http://puppet:8088/payload'"
@@ -135,23 +132,19 @@ alias curlr10k="curl --silent --output /dev/null -d '{ \"ref\": \"\" }' 'http://
 alias tunnel="echo 'ssh -N -f -p <ssh_remote_port> username@remote_host -L <local_tunnel_port>:<remote_tunnel_host>:<remote_tunnel_port>'"
 
 if [ `uname` == 'NetBSD' ]; then
-    alias ls='colorls -G'
-    #alias pine='pine -d 0'
-    alias pine='alpine'
+  alias ls='colorls -G'
+  #alias pine='pine -d 0'
+  alias pine='alpine'
 fi
 
 # check dircolors -p for coloring values
 if [ `uname` == 'Linux' ] || [ `uname` == 'CYGWIN_NT-5.1' ]; then
-    eval "`dircolors -b`"
-    eval "`dircolors -b ~/.dircolors`"
-    alias ls='ls --color=auto'
-    alias dir='ls --color=auto --format=vertical'
-    alias vdir='ls --color=auto --format=long'
+  eval "`dircolors -b`"
+  eval "`dircolors -b ~/.dircolors`"
+  alias ls='ls --color=auto'
+  alias dir='ls --color=auto --format=vertical'
+  alias vdir='ls --color=auto --format=long'
 fi
-
-# git aliases
-alias git_slog='git log --pretty=oneline --abbrev-commit'
-
 
 #---------------------------------------------------------------------------
 # Functions
@@ -206,7 +199,6 @@ elif [ -d $HOME/anaconda2/bin ]; then
 fi
 
 export PATH="$PATH"
-
 
 #---------------------------------------------------------------------------
 # Load a local bashrc if it exists 

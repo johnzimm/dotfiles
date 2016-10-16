@@ -1,40 +1,41 @@
+############################################################################
 # .bash_profile
-
-
 #
-# Override TMOUT in subshell
-#
+
+#---------------------------------------------------------------------------
+# Load Aliases and Functions
+#---------------------------------------------------------------------------
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
+#---------------------------------------------------------------------------
+# Update Path and Environment
+#---------------------------------------------------------------------------
+
 unset TMOUT
 TMOUT=0
 export TMOUT
 
-
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
-# User specific environment and startup programs
-
 PATH=$PATH:$HOME/bin
-
 export PATH
-
 
 #---------------------------------------------------------------------------
 # SSH Configuration
 #---------------------------------------------------------------------------
+
 if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent -s`
-    ssh-add
+  eval `ssh-agent -s`
+  ssh-add
 fi
 
 #---------------------------------------------------------------------------
 # RVM
+#  - Load RVM into a shell session *as a function*
 #---------------------------------------------------------------------------
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 #---------------------------------------------------------------------------
 # NVM
