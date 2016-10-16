@@ -156,90 +156,16 @@ alias git_slog='git log --pretty=oneline --abbrev-commit'
 #---------------------------------------------------------------------------
 # Functions
 #---------------------------------------------------------------------------
-
-if [ `uname` == 'Linux' ]; then
-    netinfo ()
-    {
-        echo "--------------- Network Information ---------------"
-        /sbin/ifconfig | awk /'inet addr/ {print $2}'
-        echo ""
-        /sbin/ifconfig | awk /'Bcast/ {print $3}'
-        echo ""
-        /sbin/ifconfig | awk /'inet addr/ {print $4}'
-    
-        # /sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
-        echo "---------------------------------------------------"
-    }
+if [ -f ~/.bash_functions ]; then
+  . ~/.bash_functions
 fi
-
-
-function zdatez () {
-  date +"%Y-%m-%d-%H-%M-%S"
-}
-
-function gzipr () {
-  find . -type f -name "$@" -exec gzip -9 {} \;
-}
-
-function examples () {
-  echo "
-  #
-  # Example Commands
-  #  - See http://commandlinefu.com for more
-  #
-
-  Batch File Rename:
-    for file in *.ext; do mv -vi \"\$file\" \"\$( echo \"\$file\" | sed \"s/regex/replace/\" )\"; done
-
-  Find and Replace
-    find . -type f -name \"*baz*\" -exec sed -i 's/foo/bar/g' {} + 
-
-  Date
-    date +%Y%m%d%H%M%S
-    date +%Y-%m-%d@%H:%M:%S
-
-  Timestamp:
-    touch -c -m -a -t 197001020304.05 *.ext
-
-  Compare RPMs:
-    rpm -qa --queryformat='%{NAME}\n' | sort > \`hostname\`-packages.txt
-    diff server1-packages.txt server2-packages.txt
-
-  SSH Tricks:
-
-    ssh-copy-id user@remotehost
-    cat ~/.ssh/id_rsa.pub | ssh user@remotehost “mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys”
-    ssh-keygen -R badhost
-    ssh-keygen; ssh-copy-id user@remotehost; ssh user@remotehost
-    ssh -i ~/.ssh/identity.pem user@remotehost
-    ssh -o \"PubkeyAuthentication no\" user@remotehost
-
-    ssh -f -N -D 0.0.0.0:1080 localhost -p <PORT>
-    ssh -f -N -D 1080 remotehost -p <PORT>
-    ssh -L 3306:localhost:3306 user@remotehost
-    ssh -R 9000:localhost:8080 user@remotehost
-    ssh -t reachable_remotehost ssh unreachable_remotehost
-
-    ssh user@remotehost pwd
-    ssh -fX user@remotehost gui-program
-    ssh user@remotehost cat /path/to/remotefile | diff /path/to/localfile –
-    local-command | ssh -C user@remotehost \"remote-command\"
-
-    sftp user@remotehost:/remotepath/file.txt /localpath/file.txt
-    echo \"get /remotepath/*\" | sftp -b - user@remotehost
-    echo \"put /localpath/example.txt\" | sftp -b - user@remotehost:/remotepath/
-
-  "
-}
-
 
 #---------------------------------------------------------------------------
 # Programmable Completion
 #---------------------------------------------------------------------------
 if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
-
 
 #---------------------------------------------------------------------------
 # Path Adjustments
