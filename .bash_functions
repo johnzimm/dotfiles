@@ -15,7 +15,7 @@ function zdate () {
 function zexamples () {
   if [ -f ~/.bash_examples.md ]; then
     echo ""
-    cat ~/.bash_examples.md
+    cat ~/.bash_examples.md | less
     echo ""
   fi
 }
