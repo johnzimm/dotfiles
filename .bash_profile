@@ -24,11 +24,19 @@ export PATH
 #---------------------------------------------------------------------------
 # SSH Configuration
 #---------------------------------------------------------------------------
+function launch_ssh_agent () {
+  if [ -z "${SSH_AUTH_SOCK}" ] ; then
+    eval `ssh-agent -s`
+    ssh-add
+  fi
+}
 
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add
+# Only launch automatically if we are not ssh'ing into a remote host
+if [ -z "${SSH_TTY}" ] ; then
+  launch_ssh_agent
 fi
+
+
 
 #---------------------------------------------------------------------------
 # RVM
