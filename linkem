@@ -3,6 +3,7 @@ rm -f ~/.bashrc
 rm -f ~/.bash_profile
 rm -f ~/.bash_logout
 rm -f ~/.bash_functions
+rm -f ~/.bash_notes.md
 rm -f ~/.bash_examples.md
 rm -f ~/.ssh/config
 rm -f ~/.tmux.conf
@@ -20,7 +21,7 @@ ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/.bash_logout ~/.bash_logout
 ln -s ~/dotfiles/.bash_functions ~/.bash_functions
-ln -s ~/dotfiles/.bash_examples.md ~/.bash_examples.md
+ln -s ~/dotfiles/.bash_notes.md ~/.bash_notes.md
 ln -s ~/dotfiles/.ssh/config ~/.ssh/config
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.git-prompt.sh ~/.git-prompt.sh
