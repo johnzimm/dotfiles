@@ -10,12 +10,12 @@ function zdate () {
 }
 
 #---------------------------------------------------------------------------
-# zexamples
+# znotes
 #---------------------------------------------------------------------------
-function zexamples () {
-  if [ -f ~/.bash_examples.md ]; then
+function znotes () {
+  if [ -f ~/.bash_notes.md ]; then
     echo ""
-    cat ~/.bash_examples.md | less
+    cat ~/.bash_notes.md | less
     echo ""
   fi
 }
