@@ -117,9 +117,9 @@ esac
 #---------------------------------------------------------------------------
 
 alias vi='vim'
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
+alias ll='ls -l --time-style=long-iso'
+alias la='ls -a --time-style=long-iso'
+alias lla='ls -la --time-style=long-iso'
 alias clean='rm *~ .*~'
 alias sclean='sudo rm *~ .*~'
 alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --color'
