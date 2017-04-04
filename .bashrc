@@ -141,7 +141,7 @@ fi
 if [ `uname` == 'Linux' ] || [ `uname` == 'CYGWIN_NT-5.1' ]; then
   eval "`dircolors -b`"
   eval "`dircolors -b ~/.dircolors`"
-  alias ls='ls --color=auto'
+  alias ls='ls --color=auto --time-style=long-iso'
   alias dir='ls --color=auto --format=vertical'
   alias vdir='ls --color=auto --format=long'
 fi
