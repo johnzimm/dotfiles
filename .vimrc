@@ -170,3 +170,6 @@ au BufNewFile *          :silent! exec ":0r "."~/.vim/"."skeletons/".&ft
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
+" Modeline
+set modeline
+set modelines=5
