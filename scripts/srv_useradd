@@ -1,0 +1,87 @@
+#!/bin/bash
+
+NEW_USER=${1}
+NEW_UIDGID=${2}
+
+
+usage() {
+    echo
+}
+sanity() {
+    # check variables
+    if [ -z "${NEW_USER}" ] ; then
+      echo "command *user/group* uid/gid"
+      get_next_available && exit 1
+    fi
+    
+    if [ -z "${NEW_UIDGID}" ] ; then
+      echo "command user/group *uid/gid*"
+      get_next_available && exit 1
+    fi
+}
+get_next_available() {
+    let "NEXT_USER_500=$( cat /etc/passwd | awk -F ':' '{print $3}' | sort -rn | grep "[5].."  | head -1)+1"
+    let "NEXT_USER_600=$( cat /etc/passwd | awk -F ':' '{print $3}' | sort -rn | grep "[6].."  | head -1)+1"
+    let "NEXT_USER_1000=$(cat /etc/passwd | awk -F ':' '{print $3}' | sort -rn | grep "[1]..." | head -1)+1"
+
+    let "NEXT_GROUP_500=$( cat /etc/group | awk -F ':' '{print $3}' | sort -rn | grep "[5].."  | head -1)+1"
+    let "NEXT_GROUP_600=$( cat /etc/group | awk -F ':' '{print $3}' | sort -rn | grep "[6].."  | head -1)+1"
+    let "NEXT_GROUP_1000=$(cat /etc/group | awk -F ':' '{print $3}' | sort -rn | grep "[1]..." | head -1)+1"
+
+    echo
+    echo "Next User/Group:"
+    echo "  - ${NEXT_USER_500}  / ${NEXT_GROUP_500}"
+    echo "  - ${NEXT_USER_600}  / ${NEXT_GROUP_600}"
+    echo "  - ${NEXT_USER_1000} / ${NEXT_GROUP_1000}"
+    echo
+    echo "Choose wisely....."
+    echo
+}
+check_group() {
+    # check group
+    if getent group  | grep "^${NEW_USER}\:" > /dev/null 2>&1 ; then
+        echo "group exists"
+        exit 1
+    fi
+    # check gid
+    if getent group  | grep "\:${NEW_UIDGID}\:" > /dev/null 2>&1 ; then
+        echo "gid exists"
+        exit 1
+    fi
+}
+check_user() {
+
+    # check user
+    if getent passwd | grep "^${NEW_USER}\:" > /dev/null 2>&1 ; then
+        echo "user exists"
+        exit
+    fi
+    # check uid
+    if getent passwd | grep "\:${NEW_UIDGID}\:" > /dev/null 2>&1 ; then
+        echo "uid exists"
+        exit 1
+    fi
+}
+add() {
+    sudo groupadd             \
+        --gid "${NEW_UIDGID}" \
+        "${NEW_USER}"         \
+    && sudo useradd           \
+        -m                    \
+        -d "/srv/${NEW_USER}" \
+        -s "/bin/bash"        \
+        -c "${NEW_USER}"      \
+        -u "${NEW_UIDGID}"    \
+        -g "${NEW_USER}"      \
+        "${NEW_USER}"
+}
+
+###############################################################################
+# Main
+#
+sanity      && \
+check_group && \
+check_user  && \
+add
+
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:

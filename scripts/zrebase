@@ -1,0 +1,86 @@
+#!/bin/bash
+
+###############################################################################
+# zrebase
+#  - Rebase all z prefixed branches in puppet control
+#  - This will be destructive if you don't know what is going on here.
+#
+REMOTES='origin gitlab'
+PRIMARY_BRANCH='production'
+PROTECTED_BRANCHES='production master develop'
+Z_BRANCH_PATTERN='^z'
+
+usage() {
+    echo 'Sorry.  No help yet. Please dont use.'
+}
+
+sanity_check() {
+    git --version || (echo 'Git is missing' && exit 1)
+}
+
+print_header() {
+    echo
+    echo '+----------------------------------------------------------+'
+    echo "| ${1}"
+    echo '|'
+    echo
+}
+
+print_subheader() {
+    echo
+    echo '|'
+    echo "| ${1}"
+    echo '|'
+    echo
+}
+
+sync_remote() {
+    print_header 'Sync with Remotes...'
+    git checkout ${PRIMARY_BRANCH} || exit 1
+    for REMOTE in ${REMOTES}
+    do
+        print_subheader "REMOTE: ${REMOTE}"
+        git fetch ${REMOTE} --prune
+    done
+    git pull origin ${PRIMARY_BRANCH} || exit 1
+}
+
+rebase_branches() {
+    print_header 'Rebasing...'
+    git checkout ${PRIMARY_BRANCH} || exit 1
+    ZBRANCHES=$(git branch --no-merged ${PRIMARY_BRANCH} | awk '{print $1}' | grep -v 'production\|master\|develop' | grep -v '*' | grep ^z | xargs)
+    for BRANCH in ${ZBRANCHES}
+    do
+        print_subheader "BRANCH: ${BRANCH}"
+        git checkout ${BRANCH}       || exit 1
+        git rebase ${PRIMARY_BRANCH} || exit 1
+        git push -f origin ${BRANCH} || exit 1
+    done
+    git checkout ${PRIMARY_BRANCH} || exit 1
+}
+
+cleanup_merged_branches() {
+    print_header 'Cleaning Up...'
+    git checkout ${PRIMARY_BRANCH} || exit 1
+    FIRST_REMOTE=$(echo ${REMOTES} | cut --delimiter " " --fields 1)
+    MERGED_BRANCHES=$(git branch --merged production | grep -v 'production\|master\|develop' | awk '{print $1}' | xargs)
+    for MERGED_BRANCH in ${MERGED_BRANCHES}
+    do
+        print_subheader "Deleting: ${MERGED_BRANCH} from local remote ${FIRST_REMOTE}"
+        git branch -d ${MERGED_BRANCH}                     || exit 1
+        git push ${FIRST_REMOTE} --delete ${MERGED_BRANCH}
+    done
+    git checkout ${PRIMARY_BRANCH} || exit 1
+}
+
+
+###############################################################################
+# Main
+#
+sanity_check                   \
+    && sync_remote             \
+    && rebase_branches         \
+    && sync_remote             \
+    && cleanup_merged_branches
+exit ${RETVAL}
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:
