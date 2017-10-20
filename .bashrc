@@ -50,6 +50,7 @@ export HISTCONTROL=ignoreboth # ignore successive entries
 shopt -s checkwinsize         # update the values of LINES and COLUMNS if necessary
 
 export TZ=PST8PDT
+export LC_COLLATE=C           # I like my underscores sorted to the top.
 
 if [ `uname` == 'NetBSD' ]; then
   export MAIL=/mail/${LOGNAME:?}
@@ -93,7 +94,7 @@ LIGHTPURPLE='\e[1;35m';
 #---------------------------------------------------------------------------
 
 case "$TERM" in
-  xterm*|rxvt*|screen*|tmux*)
+  xterm*|rxvt*|screen*|tmux*|cygwin)
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     #export PS1="${PURPLE}"'[${PWD/$HOME/~}]\n'"${LIGHTGREEN}"'[${USER}@${HOSTNAME}] '"${LIGHTGREEN}"
     #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[0;31m\u\e[0;37m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
@@ -180,10 +181,6 @@ if [ -d /usr/local/heroku/bin ]; then
   PATH="/usr/local/heroku/bin:$PATH"
 fi
 
-if [ -d $HOME/.rvm/bin ]; then
-  PATH="$HOME/.rvm/bin:$PATH"
-fi
-
 if [ -d $HOME/bin ]; then
   PATH="$HOME/bin:$PATH"
 fi
@@ -198,8 +195,12 @@ elif [ -d $HOME/anaconda2/bin ]; then
   PATH="$HOME/anaconda2/bin:$PATH" 
 fi
 
-export PATH="$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+export PATH="$PATH"
 #---------------------------------------------------------------------------
 # Load a local bashrc if it exists 
 #---------------------------------------------------------------------------
