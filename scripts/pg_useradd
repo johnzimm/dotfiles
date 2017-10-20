@@ -1,0 +1,5 @@
+#!/bin/bash
+
+NEW_USER=${1}
+
+sudo -i -u postgres createuser --interactive ${NEW_USER} 

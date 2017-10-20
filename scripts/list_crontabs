@@ -1,0 +1,23 @@
+#!/bin/bash
+
+for PASSWD_USER in $(cut -f1 -d: /etc/passwd);
+do
+
+    OUTPUT="$(sudo crontab -u ${PASSWD_USER} -l 2>&1 | grep -v ^\#)"
+
+    if [ $? -eq 0 ];
+    then
+        if [ "${OUTPUT}" != "no crontab for ${PASSWD_USER}" ]
+        then
+            set -o noglob
+            echo
+            echo '+-----------------------------------------+'
+            echo "| ${PASSWD_USER}"
+            echo
+            echo "${OUTPUT}"
+            echo
+            set +o noglob
+        fi
+    fi
+done
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:

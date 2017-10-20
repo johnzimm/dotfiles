@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo 'Refresh....'      && \
+sudo yum makecache      && \
+echo 'Updating....'     && \
+sudo yum update -y         \
+  --exclude=docker*        \
+  --exclude=httpd*         \
+  --exclude=mod_ssl*       \
+  --exclude=mod_*          \
+  --exclude=mysql*         \
+  --exclude=postgres*      \
+  --exclude=nginx*         \
+  --exclude=java*          \
+  --exclude=kernel*        \
+  --exclude=samba*         \
+  --exclude=yum*        && \
+echo 'Clean Up....'     && \
+sudo yum clean all
