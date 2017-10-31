@@ -13,9 +13,9 @@ function zdate () {
 # znotes
 #---------------------------------------------------------------------------
 function znotes () {
-  if [ -f ~/.bash_notes.md ]; then
+  if [ -f ~/dotfiles/cheat/notes.md ]; then
     echo ""
-    cat ~/.bash_notes.md | less
+    cat ~/dotfiles/cheat/notes.md | less
     echo ""
   fi
 }
