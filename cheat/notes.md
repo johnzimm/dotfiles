@@ -1,5 +1,7 @@
-# Example Commands
-See http://commandlinefu.com for more
+# Notes and Cheat Sheet
+
+Collected snippets of things I find handy
+
 
 ## Redirection
 
@@ -65,6 +67,7 @@ See http://commandlinefu.com for more
 
 ## Git
 
+    git diff mybranch..master -- path/to/file.ext
     git diff-tree --no-commit-id --name-only -r <commit_hash>
     git ls-files --others
     git ls-files --others --exclude-standard
@@ -93,6 +96,56 @@ See http://commandlinefu.com for more
 
     wget -e robots=off --wait 1 -x --user=xxx --password=xxx -m -k http://domain.to.mirror/
 
+## docker
+
+    docker run -i -t --rm centos /bin/bash
+
+## puppet
+
+    puppet apply --noop --verbose --modulepath ./modules manifests/site.pp
+    puppet agent --disable "message"
+    puppet agent --enable
+
+    puppet describe --list
+    puppet resource <type> <specific>
+
+    facter -p
+
+    cat /opt/puppetlabs/puppet/cache/state/classes.txt
+
+## elastic
+
+    GET /_cat
+
+    GET /_nodes/stats
+
+    GET /_cluster/state
+
+    GET /_cluster/health?pretty
+
+    GET /_cluster/stats?human&pretty
+
+    GET /_cluster/pending_tasks
+
+    GET /_nodes/stats
+
+    GET /_aliases
+
+    GET /<index>/_stats
+
+
+## vim
+
+    ```
+    # vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:
+    ```
+
 ## emacs
 
     CTRL-x CTRL-c
+
+## Resources
+
+  - http://commandlinefu.com
+  - https://lzone.de
+
