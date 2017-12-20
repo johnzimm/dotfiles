@@ -71,6 +71,7 @@ Collected snippets of things I find handy
     git diff-tree --no-commit-id --name-only -r <commit_hash>
     git ls-files --others
     git ls-files --others --exclude-standard
+    git grep "string/regexp" $(git rev-list --all)
 
 ## SVN
 
