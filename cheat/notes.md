@@ -72,6 +72,7 @@ Collected snippets of things I find handy
     git ls-files --others
     git ls-files --others --exclude-standard
     git grep "string/regexp" $(git rev-list --all)
+    git remote set-url --add --push [remote] [repourl]
 
 ## SVN
 
