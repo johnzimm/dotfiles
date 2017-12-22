@@ -101,6 +101,11 @@ Collected snippets of things I find handy
 
 ## docker
 
+    docker { images | import | build | commit | rmi | load | save }
+    docker { history | tag }
+    docker { ps | logs | inspect | events | port | top | stats | diff }
+    docker { cp | export }
+    docker exec -it foo /bin/bash
     docker run -i -t --rm centos /bin/bash
 
 ## puppet
