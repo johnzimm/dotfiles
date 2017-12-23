@@ -1,0 +1,64 @@
+#!/bin/bash
+
+###############################################################################
+# z
+#  - Rebase all z prefixed branches in puppet control
+#  - This will be destructive if you don't know what is going on here.
+#
+PRIMARY_BRANCH='production'
+Z_BRANCH_PATTERN='^z'
+
+usage() {
+    echo 'Sorry.  No help yet. Please dont use.'
+}
+
+sanity_check() {
+    git --version || (echo 'Git is missing' && exit 1)
+}
+
+print_header() {
+    echo
+    echo '+----------------------------------------------------------+'
+    echo "| ${1}"
+    echo '|'
+    echo
+}
+
+print_subheader() {
+    echo
+    echo '|'
+    echo "| ${1}"
+    echo '|'
+    echo
+}
+
+sync_remote() {
+    print_header 'Sync with Remotes...'
+    git checkout ${PRIMARY_BRANCH} || exit 1
+    for REMOTE in ${REMOTES}
+    do
+        print_subheader "REMOTE: ${REMOTE}"
+        git fetch ${REMOTE} --prune
+    done
+    git pull origin ${PRIMARY_BRANCH} || exit 1
+}
+
+diff_files() {
+    print_header 'Rebasing...'
+    git checkout ${PRIMARY_BRANCH} || exit 1
+    ZBRANCHES=$(git branch --no-merged ${PRIMARY_BRANCH} | awk '{print $1}' | grep -v 'production\|master\|develop' | grep -v '*' | grep ^z | xargs)
+    for BRANCH in ${ZBRANCHES}
+    do
+        print_subheader "BRANCH: ${BRANCH}"
+        git diff --name-only ${BRANCH}       || exit 1
+    done
+}
+
+###############################################################################
+# Main
+#
+sanity_check                   \
+    && sync_remote             \
+    && diff_files
+exit ${RETVAL}
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:
