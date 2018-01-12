@@ -1,0 +1,26 @@
+#!/bin/bash
+
+print_header() {
+    echo
+    echo '+----------------------------+'
+    echo "| ${1}"
+    echo '+----------------------------+'
+    echo
+}
+
+print_header 'Physical Disks'
+ls -l /dev/sd*
+echo
+ls -l /dev/hd*
+
+print_header 'Fstab and DF'
+cat /etc/fstab
+echo
+df -h
+
+print_header 'LVM Info'
+pvs
+echo
+vgs
+echo
+lvs
