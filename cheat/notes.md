@@ -42,6 +42,7 @@ Collected snippets of things I find handy
 
     ssh -f -N -D 0.0.0.0:1080 localhost -p <PORT>
     ssh -f -N -D 1080 remotehost -p <PORT>
+    ssh -f -N -p <ssh_remote_port> username@remote_host -L <local_tunnel_port>:<remote_tunnel_host>:<remote_tunnel_port>
     ssh -L 3306:localhost:3306 user@remotehost
     ssh -R 9000:localhost:8080 user@remotehost
     ssh -t reachable_remotehost ssh unreachable_remotehost
