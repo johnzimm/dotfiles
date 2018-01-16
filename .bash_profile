@@ -35,21 +35,3 @@ function launch_ssh_agent () {
 if [ -z "${SSH_TTY}" ] ; then
   launch_ssh_agent
 fi
-
-
-
-#---------------------------------------------------------------------------
-# RVM
-#  - Load RVM into a shell session *as a function*
-#---------------------------------------------------------------------------
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-#---------------------------------------------------------------------------
-# NVM
-#---------------------------------------------------------------------------
-
-if [ -d $HOME/.nvm ]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-fi
