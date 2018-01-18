@@ -96,6 +96,16 @@ Collected snippets of things I find handy
     C-b d    Detach from session.
     C-b s    Choose a session from a list.
 
+## process and discovery
+
+    ps aux
+    lsof -i :<port_number>
+    netstat -ntap
+    netstat -ntulp
+    netstat -lnp
+    netstat -anp
+    nmap -P0 <0.0.0.0>|<192.168.1.1-254>|<192.168.1.1/24>
+
 ## wget/curl
 
     wget -e robots=off --wait 1 -x --user=xxx --password=xxx -m -k http://domain.to.mirror/
