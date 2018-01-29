@@ -35,3 +35,5 @@ function launch_ssh_agent () {
 if [ -z "${SSH_TTY}" ] ; then
   launch_ssh_agent
 fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
