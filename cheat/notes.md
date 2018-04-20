@@ -76,6 +76,8 @@ Collected snippets of things I find handy
     git grep "string" $(git show-ref --heads)
     git remote set-url --add --push [remote] [repourl]
 
+    git submodule foreach git pull origin master
+
 ## SVN
 
      svnlook tree --full-paths .
@@ -99,11 +101,15 @@ Collected snippets of things I find handy
 ## process and discovery
 
     ps aux
+    ps -eo pid,lstart,cmd
+
     lsof -i :<port_number>
+
     netstat -ntap
     netstat -ntulp
     netstat -lnp
     netstat -anp
+
     nmap -P0 <0.0.0.0>|<192.168.1.1-254>|<192.168.1.1/24>
 
 ## wget/curl
