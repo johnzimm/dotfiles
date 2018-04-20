@@ -155,6 +155,10 @@ fi
 # Path Adjustments
 #---------------------------------------------------------------------------
 
+if [ -d ${HOME}/homebrew/bin ]; then
+  PATH="${HOME}/homebrew/bin:${PATH}"
+fi
+
 if [ -d /opt/local/bin ]; then
   PATH="/opt/local/bin:$PATH"
 fi
