@@ -111,6 +111,10 @@ Collected snippets of things I find handy
     netstat -anp
 
     nmap -P0 <0.0.0.0>|<192.168.1.1-254>|<192.168.1.1/24>
+    nmap -sP 192.168.1.0/24
+    nmap -v -sS -A -T4 192.168.1.0/24
+    nmap -p 1-65535 -sV -sS -T4 192.168.1.0/24
+    nmap -v -p 1-65535 -sV -O -sS -T4 192.168.1.0/24
 
 ## wget/curl
 
