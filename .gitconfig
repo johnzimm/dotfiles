@@ -96,7 +96,7 @@
   ls-untracked = ls-files --others --exclude-standard
 [format]
   # https://git-scm.com/docs/pretty-formats
-  pretty = format:%C(cyan)%ai%Creset %C(yellow)%h%Creset %C(cyan) %<(50,trunc)%s %C(magenta) [%ae]%Creset%C(green)%d%Creset
+  pretty = format:%C(cyan)%<(22,trunc)%ai%Creset %C(yellow)%h%Creset %C(cyan)%<(50,trunc)%s %C(magenta)[%ae]%Creset %C(auto)%d%Creset
 [mergetool]
   prompt = false
 [mergetool "mvimdiff"]
