@@ -128,6 +128,7 @@ Collected snippets of things I find handy
     docker { cp | export }
     docker exec -it foo /bin/bash
     docker run -i -t --rm centos /bin/bash
+    docker logs --tail 50 --follow --timestamps <container_name>
 
 ## puppet
 
