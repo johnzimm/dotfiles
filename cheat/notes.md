@@ -47,6 +47,8 @@ Collected snippets of things I find handy
     ssh -R 9000:localhost:8080 user@remotehost
     ssh -t reachable_remotehost ssh unreachable_remotehost
 
+    ssh -L 3389:targetremotehost:3389 username@relayremotehost
+
     ssh user@remotehost pwd
     ssh -fX user@remotehost gui-program
     ssh user@remotehost cat /path/to/remotefile | diff /path/to/localfile –
