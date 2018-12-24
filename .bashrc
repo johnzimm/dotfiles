@@ -109,9 +109,16 @@ esac
 #---------------------------------------------------------------------------
 
 alias vi='vim'
-alias ll='ls -l --time-style=long-iso'
-alias la='ls -a --time-style=long-iso'
-alias lla='ls -la --time-style=long-iso'
+
+if [ `uname` == 'Darwin' ]; then
+  alias ll='ls -l'
+  alias la='ls -a'
+  alias lla='ls -la'
+else
+  alias ll='ls -l --time-style=long-iso'
+  alias la='ls -a --time-style=long-iso'
+  alias lla='ls -la --time-style=long-iso'
+fi
 alias clean='rm *~ .*~'
 alias cleanr='rm $(find . | grep ~$)'
 alias sclean='sudo rm *~ .*~'
