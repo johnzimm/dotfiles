@@ -168,6 +168,10 @@ if [ -d ${HOME}/homebrew/bin ]; then
   PATH="${HOME}/homebrew/bin:${PATH}"
 fi
 
+if [ -f ${HOME}/miniconda3/etc/profile.d/conda.sh ]; then
+  . ${HOME}/miniconda3/etc/profile.d/conda.sh
+fi
+
 if [ -d /opt/local/bin ]; then
   PATH="/opt/local/bin:$PATH"
 fi
