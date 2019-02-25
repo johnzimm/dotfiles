@@ -5,6 +5,7 @@ rm -f ~/.bash_logout
 rm -f ~/.bash_functions
 rm -f ~/.ssh/config
 rm -f ~/.tmux.conf
+rm -f ~/.condarc
 rm -Rf ~/.vim
 rm -Rf ~/.git-prompt.sh
 rm -Rf ~/.git-completion.bash
@@ -21,6 +22,7 @@ ln -s ~/dotfiles/.bash_logout ~/.bash_logout
 ln -s ~/dotfiles/.bash_functions ~/.bash_functions
 ln -s ~/dotfiles/.ssh/config ~/.ssh/config
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.condarc ~/.condarc
 ln -s ~/dotfiles/.git-prompt.sh ~/.git-prompt.sh
 ln -s ~/dotfiles/.git-completion.bash ~/.git-completion.bash
 ln -s ~/dotfiles/.gitignore ~/.gitignore
