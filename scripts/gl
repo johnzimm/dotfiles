@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#gitlab projects "{ per_page: 10000000 }" --json | grep \"path_with_namespace\" | awk '{print $2}' | sed 's/[",]//g'
+
+GROUPS_REGEX='\"path_with_namespace\"'
+PROJECTS_REGEX='\"path_with_namespace\"'
+USERS_REGEX='\"path_with_namespace\"'
+
+OPTIONS_YAML="\"{per_page: 10000000}\""
+OPTIONS="${OPTIONS_YAML} --json"
+CLEAN="awk '{print \$2}' | sed 's/[\",]//g'"
+
+
+groups() {
+    gitlab groups ${OPTIONS} | grep ${GROUPS_REGEX} | ${CLEAN}
+}
+
+projects() {
+    echo "gitlab projects ${OPTIONS}" # | grep ${PROJECTS_REGEX} | ${CLEAN}
+    gitlab projects ${OPTIONS}
+}
+
+users() {
+    gitlab users ${OPTIONS} | grep ${USERS_REGEX} | ${CLEAN}
+}
+
+case ${1} in
+
+    groups)
+        groups
+        ;;
+    users)
+        users
+        ;;
+    projects)
+        projects
+        ;;
+    *)
+        echo "help"
+        ;;
+esac
+exit ${RETVAL}

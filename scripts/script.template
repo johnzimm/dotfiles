@@ -1,0 +1,60 @@
+#!/bin/bash
+exit # remove this in actual script . wip
+###############################################################################
+# ScriptName
+#  - note1
+#  - note2
+#  - https://www.intuitivestories.com/wicked/wicked-cool-shell-script-library.shtml
+#  - http://www.bashinator.org/
+#  - http://www.cs.uleth.ca/~holzmann/C/shells/shell_book_blinn/
+#
+
+###############################################################################
+# Init
+#
+if [ -f ~/etc/_script_name_.cfg ]; then
+    . ~/etc/_script_name_.cfg
+else
+    echo "defaults?"
+fi
+
+###############################################################################
+# Usage
+#
+usage() {
+    echo
+}
+
+###############################################################################
+# Sanity Checks
+#
+sanity() {
+    echo
+}
+
+###############################################################################
+# Utility Functions
+#
+print_header() {
+    echo
+}
+print_subheader() {
+    echo 
+}
+
+
+stop() { }
+start() { }
+restart() { }
+status() { }
+
+###############################################################################
+# Main
+#
+case "${1}"
+in
+    (*
+        usage
+        ;;
+esac
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:

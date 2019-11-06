@@ -50,6 +50,7 @@ export HISTCONTROL=ignoreboth # ignore successive entries
 shopt -s checkwinsize         # update the values of LINES and COLUMNS if necessary
 
 export TZ=PST8PDT
+export LC_COLLATE=C           # I like my underscores sorted to the top.
 
 if [ `uname` == 'NetBSD' ]; then
   export MAIL=/mail/${LOGNAME:?}
@@ -93,18 +94,9 @@ LIGHTPURPLE='\e[1;35m';
 #---------------------------------------------------------------------------
 
 case "$TERM" in
-  xterm*|rxvt*|screen*|tmux*)
-    #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    #export PS1="${PURPLE}"'[${PWD/$HOME/~}]\n'"${LIGHTGREEN}"'[${USER}@${HOSTNAME}] '"${LIGHTGREEN}"
-    #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[0;31m\u\e[0;37m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
-    #export PS1='\n\e[0;31m\u\e[37;0m@\e[0;31m\H\e[0;37m:\e[1;34m$(pwd) \e[1;37m\n\$ '
-    #export PS1="${LIGHTGREEN}\u@\h:\w\\n${YELLOW}\$ "
-    #export PS1='\e]2;\u@\H:$(pwd)\a\n\e[1;32m\u\e[0;32m@\e[1;32m\H\e[0;32m:\e[1;32m$(pwd) \e[1;33m\n\$ '
-    #git bash prompt
-    # http://code-worrier.com/blog/git-branch-in-bash-prompt/
+  xterm*|rxvt*|screen*|tmux*|cygwin)
     source ~/.git-completion.bash
     source ~/.git-prompt.sh
-    #export PS1='\u@\h:\W$(__git_ps1 " (\[\033[32m\]%s\[\033[m\])")$ '
     export PS1="\[$GREEN\]\t\[$RED\] \[$BLUE\]\u@\h:\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\n\$ "
     ;;
   *)
@@ -117,19 +109,27 @@ esac
 #---------------------------------------------------------------------------
 
 alias vi='vim'
-alias ll='ls -l --time-style=long-iso'
-alias la='ls -a --time-style=long-iso'
-alias lla='ls -la --time-style=long-iso'
+
+if [ `uname` == 'Darwin' ]; then
+  alias ll='ls -l'
+  alias la='ls -a'
+  alias lla='ls -la'
+else
+  alias ll='ls -l --time-style=long-iso'
+  alias la='ls -a --time-style=long-iso'
+  alias lla='ls -la --time-style=long-iso'
+fi
 alias clean='rm *~ .*~'
+alias cleanr='rm $(find . | grep ~$)'
 alias sclean='sudo rm *~ .*~'
 alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gitresetauthor='git commit --amend --reset-author'
-alias git_slog='git log --pretty=oneline --abbrev-commit'
+alias gitslog='git log --pretty=oneline --abbrev-commit'
+alias gfa='for remote in $(git remote | xargs); do git fetch $remote --prune; done'
 alias pwhash="python -c \"import crypt,random,string; print crypt.crypt(raw_input('clear-text password: '), '\\\$6\\\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)]))\""
 
 alias curlr10k="curl --silent --output /dev/null -d '{ \"ref\": \"\" }' 'http://puppet:8088/payload'"
 
-alias tunnel="echo 'ssh -N -f -p <ssh_remote_port> username@remote_host -L <local_tunnel_port>:<remote_tunnel_host>:<remote_tunnel_port>'"
 
 if [ `uname` == 'NetBSD' ]; then
   alias ls='colorls -G'
@@ -164,6 +164,14 @@ fi
 # Path Adjustments
 #---------------------------------------------------------------------------
 
+if [ -d ${HOME}/homebrew/bin ]; then
+  PATH="${HOME}/homebrew/bin:${PATH}"
+fi
+
+if [ -f ${HOME}/miniconda3/etc/profile.d/conda.sh ]; then
+  . ${HOME}/miniconda3/etc/profile.d/conda.sh
+fi
+
 if [ -d /opt/local/bin ]; then
   PATH="/opt/local/bin:$PATH"
 fi
@@ -180,25 +188,21 @@ if [ -d /usr/local/heroku/bin ]; then
   PATH="/usr/local/heroku/bin:$PATH"
 fi
 
-if [ -d $HOME/.rvm/bin ]; then
-  PATH="$HOME/.rvm/bin:$PATH"
-fi
-
 if [ -d $HOME/bin ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
-if [ -d /cygdrive/c/Program\ Files/Puppet\ Labs/Puppet/bin ]; then
-  PATH="/cygdrive/c/Program\ Files/Puppet\ Labs/Puppet/bin:$PATH"
+export PATH="~/dotfiles/scripts:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [ -d $HOME/.rvm/bin ]; then
+  export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
-if [ -d $HOME/anaconda/bin ]; then
-  PATH="$HOME/anaconda/bin:$PATH"
-elif [ -d $HOME/anaconda2/bin ]; then
-  PATH="$HOME/anaconda2/bin:$PATH" 
-fi
-
-export PATH="$PATH"
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #---------------------------------------------------------------------------
 # Load a local bashrc if it exists 
@@ -207,3 +211,4 @@ export PATH="$PATH"
 if [ -f ~/.bashrc_local ]; then
   . ~/.bashrc_local
 fi
+

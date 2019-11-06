@@ -1,5 +1,7 @@
-# Example Commands
-See http://commandlinefu.com for more
+# Notes and Cheat Sheet
+
+Collected snippets of things I find handy
+
 
 ## Redirection
 
@@ -40,9 +42,12 @@ See http://commandlinefu.com for more
 
     ssh -f -N -D 0.0.0.0:1080 localhost -p <PORT>
     ssh -f -N -D 1080 remotehost -p <PORT>
+    ssh -f -N -p <ssh_remote_port> username@remote_host -L <local_tunnel_port>:<remote_tunnel_host>:<remote_tunnel_port>
     ssh -L 3306:localhost:3306 user@remotehost
     ssh -R 9000:localhost:8080 user@remotehost
     ssh -t reachable_remotehost ssh unreachable_remotehost
+
+    ssh -L 3389:targetremotehost:3389 username@relayremotehost
 
     ssh user@remotehost pwd
     ssh -fX user@remotehost gui-program
@@ -65,9 +70,15 @@ See http://commandlinefu.com for more
 
 ## Git
 
+    git diff mybranch..master -- path/to/file.ext
     git diff-tree --no-commit-id --name-only -r <commit_hash>
     git ls-files --others
     git ls-files --others --exclude-standard
+    git grep "string/regexp" $(git rev-list --all)
+    git grep "string" $(git show-ref --heads)
+    git remote set-url --add --push [remote] [repourl]
+
+    git submodule foreach git pull origin master
 
 ## SVN
 
@@ -89,10 +100,84 @@ See http://commandlinefu.com for more
     C-b d    Detach from session.
     C-b s    Choose a session from a list.
 
+## process and discovery
+
+    ps aux
+    ps -eo pid,lstart,cmd
+
+    lsof -i :<port_number>
+
+    netstat -ntap
+    netstat -ntulp
+    netstat -lnp
+    netstat -anp
+
+    nmap -P0 <0.0.0.0>|<192.168.1.1-254>|<192.168.1.1/24>
+    nmap -sP 192.168.1.0/24
+    nmap -v -sS -A -T4 192.168.1.0/24
+    nmap -p 1-65535 -sV -sS -T4 192.168.1.0/24
+    nmap -v -p 1-65535 -sV -O -sS -T4 192.168.1.0/24
+
 ## wget/curl
 
     wget -e robots=off --wait 1 -x --user=xxx --password=xxx -m -k http://domain.to.mirror/
 
+## docker
+
+    docker { images | import | build | commit | rmi | load | save }
+    docker { history | tag }
+    docker { ps | logs | inspect | events | port | top | stats | diff }
+    docker { cp | export }
+    docker exec -it foo /bin/bash
+    docker run -i -t --rm centos /bin/bash
+    docker logs --tail 50 --follow --timestamps <container_name>
+
+## puppet
+
+    puppet apply --noop --verbose --modulepath ./modules manifests/site.pp
+    puppet agent --disable "message"
+    puppet agent --enable
+
+    puppet describe --list
+    puppet resource <type> <specific>
+
+    facter -p
+
+    cat /opt/puppetlabs/puppet/cache/state/classes.txt
+
+## elastic
+
+    GET /_cat
+
+    GET /_nodes/stats
+
+    GET /_cluster/state
+
+    GET /_cluster/health?pretty
+
+    GET /_cluster/stats?human&pretty
+
+    GET /_cluster/pending_tasks
+
+    GET /_nodes/stats
+
+    GET /_aliases
+
+    GET /<index>/_stats
+
+
+## vim
+
+    ```
+    # vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:
+    ```
+
 ## emacs
 
     CTRL-x CTRL-c
+
+## Resources
+
+  - http://commandlinefu.com
+  - https://lzone.de
+
