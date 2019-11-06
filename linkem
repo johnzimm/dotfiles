@@ -20,7 +20,7 @@ ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/.bash_logout ~/.bash_logout
 ln -s ~/dotfiles/.bash_functions ~/.bash_functions
-ln -s ~/dotfiles/.ssh/config ~/.ssh/config
+ln -s ~/dotfiles/.ssh/config ~/.ssh/config && chmod 0600 ~/.ssh/config
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.condarc ~/.condarc
 ln -s ~/dotfiles/.git-prompt.sh ~/.git-prompt.sh
@@ -29,4 +29,3 @@ ln -s ~/dotfiles/.gitignore ~/.gitignore
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.puppet-lint.rc ~/.puppet-lint.rc
 ln -s ~/dotfiles/.dircolors ~/.dircolors
-
