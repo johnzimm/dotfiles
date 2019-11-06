@@ -188,6 +188,11 @@ if [ -d $HOME/.rvm/bin ]; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 #---------------------------------------------------------------------------
 # Load a local bashrc if it exists 
 #---------------------------------------------------------------------------
@@ -195,3 +200,4 @@ fi
 if [ -f ~/.bashrc_local ]; then
   . ~/.bashrc_local
 fi
+
