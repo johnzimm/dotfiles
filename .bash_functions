@@ -13,7 +13,7 @@ function zdate () {
 # znotes
 #---------------------------------------------------------------------------
 function znotes () {
-  if [ -f "${HOME}/dotfiles/docs/_index.md" ]; then
+  if [ -f "${HOME}/dotfiles/docs/index.md" ]; then
     echo ""
     cat ${HOME}/dotfiles/docs/*.md | less
     echo ""
