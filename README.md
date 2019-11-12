@@ -10,6 +10,13 @@ Snippets shamelessly borrowed from some of the following....
  * https://dotfiles.github.io
  * Other sources I forgot to make note of....
 
+## Misc Notes
+
+I like to maintain misc notes I can easily access via terminal.
+
+They can be accessed in the [docs folder](docs/index.md).
+
+From bash shell  there is a function called `znotes` which just opens them all in `less` for quick searching.
 
 
 ## How to use this repo
