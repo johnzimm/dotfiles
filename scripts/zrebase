@@ -5,7 +5,6 @@
 #  - Rebase all z prefixed branches in puppet control
 #  - This will be destructive if you don't know what is going on here.
 #
-REMOTES='origin gitlab'
 PRIMARY_BRANCH='production'
 INTEGRATION_BRANCH='zworking'
 PROTECTED_BRANCHES='production master develop zworking'
@@ -38,11 +37,11 @@ print_subheader() {
 sync_remote() {
     print_header 'Sync Remotes...'
     git checkout    ${PRIMARY_BRANCH} || exit 1
-    for REMOTE in $(git remote | xargs); do git fetch $REMOTE --prune; done
+    git fetch --all --prune
     git checkout    ${PRIMARY_BRANCH} || exit 1
     git pull origin ${PRIMARY_BRANCH} || exit 1
     git push origin ${PRIMARY_BRANCH} || exit 1
-    for REMOTE in $(git remote | xargs); do git fetch $REMOTE --prune; done
+    git fetch --all --prune
 }
 
 rebase_branches() {
@@ -70,14 +69,13 @@ cleanup_merged_branches() {
 
     git checkout ${PRIMARY_BRANCH} || exit 1
 
-    FIRST_REMOTE=$(echo ${REMOTES} | cut --delimiter " " --fields 1)
     MERGED_BRANCHES=$(git branch --merged production | grep -v 'production\|master\|develop\|zworking' | awk '{print $1}' | xargs)
 
     for MERGED_BRANCH in ${MERGED_BRANCHES}
     do
-        print_subheader "Deleting: ${MERGED_BRANCH} from local remote ${FIRST_REMOTE}"
+        print_subheader "Deleting: ${MERGED_BRANCH} from local and origin"
         git branch -d ${MERGED_BRANCH}                     || exit 1
-        git push ${FIRST_REMOTE} --delete ${MERGED_BRANCH}
+        git push origin --delete ${MERGED_BRANCH}
     done
 
     git checkout ${PRIMARY_BRANCH} || exit 1
