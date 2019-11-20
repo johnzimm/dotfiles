@@ -1,0 +1,14 @@
+# https://www.mkdocs.org/user-guide/configuration/
+site_name: 'znotes'
+site_description: "J.Zimmerman's notes"
+repo_url: 'https://gitlab.com/john.zimm/dotfiles'
+
+nav:
+  - 'Index': 'index.md'
+  - 'zimm.io': 'https://zimm.io'
+
+theme:
+  name: 'mkdocs'
+
+docs_dir: 'docs'
+site_dir: 'site'
