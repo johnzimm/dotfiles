@@ -180,8 +180,16 @@ if [ -d /usr/local/bin ]; then
   PATH="/usr/local/bin:$PATH"
 fi
 
-if [ -d /usr/local/git/bin ]; then
-  PATH="/usr/local/git/bin:$PATH"
+if [ -d /opt/git/default/bin ]; then
+  PATH="/opt/git/default/bin:$PATH"
+fi
+
+if [ -d /opt/python/default/bin ]; then
+  PATH="/opt/python/default/bin:$PATH"
+fi
+
+if [ -d /opt/java/default/bin ]; then
+  PATH="/opt/java/default/bin:$PATH"
 fi
 
 if [ -d /usr/local/heroku/bin ]; then
