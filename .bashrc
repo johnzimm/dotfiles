@@ -125,7 +125,8 @@ alias sclean='sudo rm *~ .*~'
 alias gitgraph='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gitresetauthor='git commit --amend --reset-author'
 alias gitslog='git log --pretty=oneline --abbrev-commit'
-alias gfa='for remote in $(git remote | xargs); do git fetch $remote --prune; done'
+#alias gfa='for remote in $(git remote | xargs); do git fetch $remote --prune; done'
+alias gfa='git fetch --all --prune'
 alias pwhash="python -c \"import crypt,random,string; print crypt.crypt(raw_input('clear-text password: '), '\\\$6\\\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)]))\""
 
 alias curlr10k="curl --silent --output /dev/null -d '{ \"ref\": \"\" }' 'http://puppet:8088/payload'"
