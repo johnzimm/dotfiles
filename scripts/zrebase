@@ -7,7 +7,7 @@
 #
 PRIMARY_BRANCH='production'
 INTEGRATION_BRANCH='zworking'
-PROTECTED_BRANCHES='production master develop zworking'
+PROTECTED_BRANCHES_REGEX='production\|master\|develop\|zworking\|working\|save'
 Z_BRANCH_PATTERN='^z'
 
 usage() {
@@ -51,7 +51,7 @@ rebase_branches() {
     git rebase   ${PRIMARY_BRANCH}     || exit 1
 
 
-    ZBRANCHES=$(git branch --no-merged ${INTEGRATION_BRANCH} | awk '{print $1}' | grep -v 'production\|master\|develop\|zworking' | grep -v '*' | grep ^z | xargs)
+    ZBRANCHES=$(git branch --no-merged ${INTEGRATION_BRANCH} | awk '{print $1}' | grep -v "${PROTECTED_BRANCHES_REGEX}" | grep -v '*' | grep ^z | xargs)
 
     for ZBRANCH in ${ZBRANCHES}
     do
@@ -69,7 +69,7 @@ cleanup_merged_branches() {
 
     git checkout ${PRIMARY_BRANCH} || exit 1
 
-    MERGED_BRANCHES=$(git branch --merged production | grep -v 'production\|master\|develop\|zworking' | awk '{print $1}' | xargs)
+    MERGED_BRANCHES=$(git branch --merged production | grep -v "${PROTECTED_BRANCHES_REGEX}" | awk '{print $1}' | xargs)
 
     for MERGED_BRANCH in ${MERGED_BRANCHES}
     do
