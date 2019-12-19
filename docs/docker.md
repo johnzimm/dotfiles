@@ -13,3 +13,5 @@
     docker exec -it foo /bin/bash
     docker run -i -t --rm centos /bin/bash
     docker logs --tail 50 --follow --timestamps <container_name>
+
+    docker images --format "{{.Repository}}:{{.Tag}}" | grep ':latest' | xargs -L1 docker pull;
