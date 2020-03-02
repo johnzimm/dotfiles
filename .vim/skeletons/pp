@@ -52,3 +52,4 @@ class profile::something::something {
   }
 
 } # end class
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4 syntax=puppet:

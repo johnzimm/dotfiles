@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+###############################################################################
+#
+#
+USAGE=$(cat <<'END_USAGE'
+
+Usage:
+    -h|--help     Display this help
+    -v|--verbose  Verbose output
+
+END_USAGE
+)
+
+
+###############################################################################
+# print_usage
+#
+function print_usage() {
+    echo $USAGE
+} # end print_usage
+
+
+###############################################################################
+# parse_params
+#
+function parse_params() {
+    local param
+    while [[ $# -gt 0 ]]; do
+        param="${1}"
+        shift
+        case $param in
+            -h | --help)
+                print_usage; exit 0
+                ;;
+            -v | --verbose)
+                verbose=true
+                echo "VERBOSE"
+                ;;
+            *)
+                print_usage; exit 1
+                ;;
+        esac
+    done
+} # end parse_params
+
+
+###############################################################################
+# main
+#
+function main() {
+
+    parse_params "${@}"
+
+    if [ "${verbose}" = true ]; then
+        echo 'This Script Does Nothing Verbosely'
+    else
+        echo 'This Script Does Nothing'
+    fi
+} # main
+
+main "$@"
+
+# vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4 syntax=sh:

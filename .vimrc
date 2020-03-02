@@ -80,11 +80,14 @@ if has("autocmd")
 
 
   " Highlighting
-  autocmd BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full)
-  au BufNewFile,BufRead *.thtml :set ft=php  " php highlighting for cake templates
-  au BufNewFile,BufRead *.ctp :set ft=php  " php highlighting for cake templates
-  au BufNewFile,BufRead *.html :set ft=php  " php highlighting for on html files (I have php in my html files)
-  au BufNewFile,BufRead *.tpl   :set ft=html " html highlighting for smarty templates
+  autocmd BufEnter * :syntax sync fromstart  " ensure every file does syntax highlighting (full)
+  au BufNewFile,BufRead *.thtml      :set ft=php        " php highlighting for cake templates
+  au BufNewFile,BufRead *.ctp        :set ft=php        " php highlighting for cake templates
+  au BufNewFile,BufRead *.html       :set ft=html       " HTML
+  au BufNewFile,BufRead *.pp         :set ft=pp         " Puppet
+  au BufNewFile,BufRead *.sh         :set ft=sh         " Bash Script
+  au BufNewFile,BufRead *.tpl        :set ft=html       " html highlighting for smarty templates
+  au BufNewFile,BufRead *.vhost.conf :set ft=vhost.conf " Apache Virtual Host
 
 endif " has("autocmd")
 
@@ -165,6 +168,7 @@ imap <Esc>Oz 0
 "    :echo glob($VIMRUNTIME . '/ftplugin/*.vim')
 "    :echo glob($VIMRUNTIME . '/syntax/*.vim')
 au BufNewFile .gitignore :silent! exec ":0r "."~/.vim/"."skeletons/"."gitignore"
+au BufNewFile Dockerfile :silent! exec ":0r "."~/.vim/"."skeletons/"."dockerfile"
 au BufNewFile *          :silent! exec ":0r "."~/.vim/"."skeletons/".&ft
 
 " NerdTree
