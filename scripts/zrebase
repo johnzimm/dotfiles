@@ -7,7 +7,7 @@
 #
 PRIMARY_BRANCH='production'
 INTEGRATION_BRANCH='zworking'
-PROTECTED_BRANCHES_REGEX='production\|master\|develop\|zworking\|working\|save'
+PROTECTED_BRANCHES_REGEX='production\|master\|develop\|zworking\|working\|save|z_elastic'
 Z_BRANCH_PATTERN='^z'
 
 usage() {
@@ -89,7 +89,6 @@ sanity_check                   \
     && sync_remote             \
     && rebase_branches         \
     && sync_remote             \
-    && cleanup_merged_branches \
     && sync_remote
 exit ${RETVAL}
 # vim: set expandtab smarttab tabstop=4 shiftwidth=4 softtabstop=4:
