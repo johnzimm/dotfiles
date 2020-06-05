@@ -83,10 +83,15 @@ if has("autocmd")
   autocmd BufEnter * :syntax sync fromstart  " ensure every file does syntax highlighting (full)
   au BufNewFile,BufRead *.thtml      :set ft=php        " php highlighting for cake templates
   au BufNewFile,BufRead *.ctp        :set ft=php        " php highlighting for cake templates
+  au BufNewFile,BufRead *.php        :set ft=php        " php highlighting for cake templates
   au BufNewFile,BufRead *.html       :set ft=html       " HTML
-  au BufNewFile,BufRead *.pp         :set ft=pp         " Puppet
+  au BufNewFile,BufRead *.pp         :set ft=puppet     " Puppet
   au BufNewFile,BufRead *.sh         :set ft=sh         " Bash Script
   au BufNewFile,BufRead *.tpl        :set ft=html       " html highlighting for smarty templates
+  au BufNewFile,BufRead *.yaml       :set ft=yaml       " yaml
+  au BufNewFile,BufRead *.toml       :set ft=toml       " toml
+  au BufNewFile,BufRead *.json       :set ft=json       " json
+  au BufNewFile,BufRead *.js         :set ft=js         " js
   au BufNewFile,BufRead *.vhost.conf :set ft=vhost.conf " Apache Virtual Host
 
 endif " has("autocmd")
@@ -177,3 +182,6 @@ map <C-n> :NERDTreeToggle<CR>
 " Modeline
 set modeline
 set modelines=5
+
+" Vim Polyglot
+" https://github.com/vim-latex/vim-latex/issues/149
