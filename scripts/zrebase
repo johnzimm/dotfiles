@@ -58,7 +58,11 @@ rebase_branches() {
         print_subheader "ZBRANCH: ${ZBRANCH}"
         git checkout ${ZBRANCH}       || exit 1
         git rebase   ${INTEGRATION_BRANCH} || exit 1
-        git push -f origin ${ZBRANCH} || exit 1
+
+        until git push -f origin ${ZBRANCH}
+        do
+            echo "Retrying..."
+        done
     done
 
     git checkout ${INTEGRATION_BRANCH} || exit 1
