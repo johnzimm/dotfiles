@@ -37,3 +37,4 @@ if [ -z "${SSH_TTY}" ] ; then
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -f "$HOME/.linuxbrew/bin/brew" ]] && eval $("$HOME/.linuxbrew/bin/brew" shellenv)
