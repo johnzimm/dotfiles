@@ -119,6 +119,7 @@ else
   alias la='ls -a --time-style=long-iso'
   alias lla='ls -la --time-style=long-iso'
 fi
+alias ps_aux='ps ax o user:20,pid,pcpu,pmem,vsz,rss,tty,stat,start_time,time,cmd'
 alias clean='rm *~ .*~'
 alias cleanr='rm $(find . | grep ~$)'
 alias sclean='sudo rm *~ .*~'
