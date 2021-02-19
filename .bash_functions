@@ -43,3 +43,23 @@ function znetinfo () {
     echo "---------------------------------------------------"
   fi
 }
+
+#---------------------------------------------------------------------------
+# znetinfo
+#---------------------------------------------------------------------------
+function get_xserver () {
+  case $TERM in
+    xterm )
+      XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' ) 
+      # Ane-Pieter Wieringa suggests the following alternative:
+      # I_AM=$(who am i)
+      # SERVER=${I_AM#*(}
+      # SERVER=${SERVER%*)}
+      XSERVER=${XSERVER%%:*}
+      ;;
+    aterm | rxvt)
+      # find some code that works here.....
+      ;;
+  esac  
+}
+

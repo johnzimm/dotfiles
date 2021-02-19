@@ -11,24 +11,14 @@ if [ -f /etc/bashrc ]; then
 fi
 
 #---------------------------------------------------------------------------
+# Functions
+#---------------------------------------------------------------------------
+if [ -f ~/.bash_functions ]; then
+  . ~/.bash_functions
+fi
+#---------------------------------------------------------------------------
 # Display Setup
 #---------------------------------------------------------------------------
-
-function get_xserver () {
-  case $TERM in
-    xterm )
-      XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' ) 
-      # Ane-Pieter Wieringa suggests the following alternative:
-      # I_AM=$(who am i)
-      # SERVER=${I_AM#*(}
-      # SERVER=${SERVER%*)}
-      XSERVER=${XSERVER%%:*}
-      ;;
-    aterm | rxvt)
-      # find some code that works here.....
-      ;;
-  esac  
-}
 
 if [ -z ${DISPLAY:=""} ]; then
   get_xserver
@@ -148,12 +138,6 @@ if [ `uname` == 'Linux' ] || [ `uname` == 'CYGWIN_NT-5.1' ]; then
   alias vdir='ls --color=auto --format=long'
 fi
 
-#---------------------------------------------------------------------------
-# Functions
-#---------------------------------------------------------------------------
-if [ -f ~/.bash_functions ]; then
-  . ~/.bash_functions
-fi
 
 #---------------------------------------------------------------------------
 # Programmable Completion
