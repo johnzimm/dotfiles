@@ -15,3 +15,4 @@
     docker logs --tail 50 --follow --timestamps <container_name>
 
     docker images --format "{{.Repository}}:{{.Tag}}" | grep ':latest' | xargs -L1 docker pull;
+    docker images | grep -v REPOSITORY | awk '{print $1}'| xargs -L1 docker pull 
