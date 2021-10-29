@@ -135,3 +135,7 @@
   path = .gitconfig_local
 [pull]
 	ff = only
+[rebase]
+	instructionFormat = %<(50,trunc)%s <%ae>
+[init]
+	defaultBranch = main
