@@ -38,3 +38,7 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -f "$HOME/.linuxbrew/bin/brew" ]] && eval $("$HOME/.linuxbrew/bin/brew" shellenv)
+
+export COLUMNS="120"
+
+export PATH="$PATH:/srv/home/zimmermj/ACLI"

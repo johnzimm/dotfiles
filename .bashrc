@@ -50,6 +50,7 @@ if [ `uname` == 'NetBSD' ]; then
   export TMPDIR="/tmp"
 fi
 
+export COLUMNS="120"
 
 
 #---------------------------------------------------------------------------
@@ -186,6 +187,11 @@ if [ -d $HOME/bin ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
 export PATH="~/dotfiles/scripts:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -203,6 +209,13 @@ if [ -f "${HOME}/venv/bin/activate" ]; then
   . "${HOME}/venv/bin/activate"
 fi
 
+
+# Atlassian CLI
+if [ -d /usr/local/heroku/bin ]; then
+    export PATH="$PATH:${HOME}/ACLI"
+fi
+
+
 #---------------------------------------------------------------------------
 # Load a local bashrc if it exists 
 #---------------------------------------------------------------------------
@@ -210,4 +223,3 @@ fi
 if [ -f ~/.bashrc_local ]; then
   . ~/.bashrc_local
 fi
-
